@@ -77,5 +77,12 @@ endif
 
 " DON'T EDIT BELOW
 
-" source vimrcs of plugins use 's.sh configure'
-source  ~/.vim/.vimrc_bundle
+" load default vimrc
+for f in split( glob('~/.vim/config/*/default.vimrc'), '\n' )
+  exe 'source' f
+endfor
+" load custom vimrc
+for f in split( glob('~/.vim/config/*/vimrc'), '\n' )
+  exe 'source' f
+endfor
+

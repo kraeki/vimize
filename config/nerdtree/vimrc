@@ -1,2 +1,0 @@
-map  <F3> :NERDTree<CR>
-imap <F3> :NERDTree<CR>
