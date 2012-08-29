@@ -13,5 +13,4 @@ git clone https://github.com/kraeki/vimize.git ~/.vim
 License
 -------
 
-Copyright (c) Tim Pope.  Distributed under the same terms as Vim itself.
-See `:help license`.
+Copyright (c) kraeki.  Distributed under the same terms as Vim itself.
