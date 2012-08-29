@@ -21,6 +21,7 @@ case $1 in
 
 # git clone repo and setup config
 install)
+  ln -s ~/.vim/vimrc ~/.vimrc 
 	for a in $plugins; do
 		plugin=`basename $a | sed 's/.\{4\}$//'`
 		if [ ! -d bundle/$plugin ]; then
@@ -58,6 +59,14 @@ purge)
 			echo removed config "config/$plugin"
  	#fi
 	done
+;;
+
+# push to other computer
+push)
+  if [ -d ~/.vim ]; then
+    mv ~/.vim ~/.vim.old`$(date +%F)`
+  fi
+  ssh andreasschmid@192.168.123.114 'git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
 ;;
 
 *)
