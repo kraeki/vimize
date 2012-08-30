@@ -61,11 +61,15 @@ purge)
 	done
 ;;
 
-# push to other computer
-push)
-  ssh andreasschmid@192.168.123.114 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.old$(date +%Y%m%d%H%M%S
-); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
-
+# clone to other computer
+# ./s.sh clone user@192.168.123.114
+clone)
+  shift
+  if [ -z "$1"  ]; then
+    echo Usage: `basename $0` clone user@host "(e.g. andreasschmid@192.168.123.114)"
+    exit 1
+  fi
+  ssh andreasschmid@192.168.123.114 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.$(date +%Y%m%d%H%M%S); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
 ;;
 
 *)
