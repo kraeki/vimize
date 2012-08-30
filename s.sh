@@ -63,10 +63,9 @@ purge)
 
 # push to other computer
 push)
-  if [ -d ~/.vim ]; then
-    mv ~/.vim ~/.vim.old$(date +%F)
-  fi
-  ssh andreasschmid@192.168.123.114 'git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
+  ssh andreasschmid@192.168.123.114 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.old$(date +%Y%m%d%H%M%S
+); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
+
 ;;
 
 *)
