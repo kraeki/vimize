@@ -14,6 +14,8 @@ plugins="
 
   #https://github.com/vim-scripts/indentpython.vim.git
 
+user=`whoami`
+
 cd ~/.vim
 
 # public variables
@@ -71,6 +73,17 @@ clone)
     exit 1
   fi
   ssh $1 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.$(date +%Y%m%d%H%M%S); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
+;;
+
+# pull from remote computer
+# ./s.sh pull user@192.168.123.114
+pull)
+  shift
+  if [ -z "$1"  ]; then
+    echo Usage: `basename $0` pull user@host "(e.g. andreasschmid@192.168.123.114)"
+    exit 1
+  fi
+  git clone ssh://$1/~/.vim ~/.vim 
 ;;
 
 *)
