@@ -15,6 +15,10 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" support directory vimrc ( useful for projects)
+set exrc    " enable per-directory .vimrc files
+set secure  " disable unsafe commands in local .vimrc files
+
 " set c1ipboard to x-windows selection
 set clipboard=unnamed
 
@@ -34,11 +38,12 @@ hi! User4 ctermfg=DarkCyan  cterm=bold ctermbg=52 guifg=Cyan  guibg=#443333
 " set leader key
 let mapleader = ","
 
-" create ctags file
-set tags=tags;/
-set tags+=~/.vim/stl_tags
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
-imap <F8> <ESC>:!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
+" create ctags file (default :set tags? )
+"set tags=tags;/
+"set tags+=~/.vim/stl_tags
+nnoremap <F5> :!ctags -R --languages=C++ --c++-kinds=+p --fields=+iaS --extra=+q ./ <CR> :echo "C/C++ tag updated" <CR>
+"map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
+"imap <F8> <ESC>:!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
 
 
 " switch buffer mappings
