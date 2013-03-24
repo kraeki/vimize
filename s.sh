@@ -3,6 +3,7 @@
 plugins="
 	https://github.com/vim-scripts/taglist.vim.git
   https://github.com/MasterKey/OmniCppComplete.git
+  https://github.com/tpope/vim-fugitive.git
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git
