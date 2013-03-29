@@ -6,6 +6,7 @@ plugins="
   https://github.com/tpope/vim-fugitive.git
   https://github.com/vim-scripts/The-NERD-Commenter.git
   https://github.com/vim-scripts/Align.git
+  https://github.com/kien/ctrlp.vim.git
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git
