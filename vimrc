@@ -51,6 +51,10 @@ map <a-left> :bp<CR>
 map <a-right> :bn<CR>
 imap <a-left> <ESC>:bp<CR>
 imap <a-right> <ESC>:bn<CR>
+map <C-k> :bp<CR>
+map <C-j> :bn<CR>
+imap <C-k> <ESC>:bp<CR>
+imap <C-j> <ESC>:bn<CR>
 
 " shortcut to auto indent entire file
 nmap <F11> 1G=G''

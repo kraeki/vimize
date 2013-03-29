@@ -4,14 +4,14 @@ plugins="
 	https://github.com/vim-scripts/taglist.vim.git
   https://github.com/MasterKey/OmniCppComplete.git
   https://github.com/tpope/vim-fugitive.git
+  https://github.com/vim-scripts/The-NERD-Commenter.git
+  https://github.com/vim-scripts/Align.git
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git
   #https://github.com/vim-scripts/ActionScript-3-Omnicomplete.git
-  #https://github.com/tpope/vim-fugitive.git
   #https://github.com/MarcWeber/vim-addon-local-vimrc.git
   #https://github.com/vim-scripts/DoxygenToolkit.vim.git
-  #https://github.com/vim-scripts/The-NERD-Commenter.git
 
   #https://github.com/vim-scripts/indentpython.vim.git
 
