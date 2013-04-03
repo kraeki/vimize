@@ -1,5 +1,5 @@
 " pathogen for bundles
-call pathogen#infect() 
+call pathogen#infect()
 
 " public setup
 " ============
@@ -10,62 +10,243 @@ set t_Co=256 " enable 256 colors
 " limits
 set history=500
 
-set tabstop=2
+" map leader key to comma (,)
+let mapleader=","
+
+" tab settings
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" support directory vimrc ( useful for projects)
-set exrc    " enable per-directory .vimrc files
-set secure  " disable unsafe commands in local .vimrc files
+" indenting
+set cindent
+set autoindent
+set smartindent
 
-" set c1ipboard to x-windows selection
+" folding
+set nofoldenable
+
+" set clipboard to x-windows selection
 set clipboard=unnamed
 
-" dom't wrap lines
-set nowrap
+" set fileformat to unix
+set fileformat=unix
 
-" status bar
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
-set laststatus=2 
+" turn on incremental search with ignore case (except explicit caps) and
+" highlighting
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-" vim coloring
-hi! User1 ctermfg=LightGrey cterm=bold ctermbg=52 guifg=Black guibg=#665555
-hi! User2 ctermfg=DarkGreen cterm=bold ctermbg=52 guifg=Green guibg=#443333
-hi! User3 ctermfg=DarkCyan  cterm=bold ctermbg=52 guifg=Can  guibg=#443333
-hi! User4 ctermfg=DarkCyan  cterm=bold ctermbg=52 guifg=Cyan  guibg=#443333
+" disable backup files
+set nobackup
 
-" set leader key
-let mapleader = ","
+" show list instead of just completing
+set wildmenu
+set wildmode=longest,list
 
-" create ctags file (default :set tags? )
-"set tags=tags;/
-"set tags+=~/.vim/stl_tags
-nnoremap <F5> :!ctags -R --languages=C++ --c++-kinds=+p --fields=+iaS --extra=+q ./ <CR> :echo "C/C++ tag updated" <CR>
-"map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
-"imap <F8> <ESC>:!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
+" complete options
+set completeopt=menuone,menu,longest,preview
 
+" set tag locations
+set tags=tags;/
+set tags+=~/.vim/tags/stl_tags
 
-" switch buffer mappings
-map <a-left> :bp<CR>
-map <a-right> :bn<CR>
-imap <a-left> <ESC>:bp<CR>
-imap <a-right> <ESC>:bn<CR>
-map <C-k> :bp<CR>
-map <C-j> :bn<CR>
-imap <C-k> <ESC>:bp<CR>
-imap <C-j> <ESC>:bn<CR>
+" copy up to 1000 lines from one file to another
+set viminfo='1000,\"2000,s2000,h
 
-" shortcut to auto indent entire file
-nmap <F11> 1G=G''
-imap <F11> <ESC>1G=Ga''
-
-" spell mapping and setting
-"map <F9> :set spell!<CR>
-"imap <F9> <ESC>:set spell!<CR>
+" Set spell language
 set spelllang=de_ch
 
-" when pressing <Home> go to first charachter in line
+" wildignore
+set wildignore+=*.o,*.lo,*.la,*.obj,.git,*.pyc,*.so,*/.git/*
+
+" Don't show currect mode
+set noshowmode
+
+" status line settings
+set laststatus=2 " Always show the statusline
+"set statusline=%4*---%1*\ %F%m%r%h%w\ %2*%{fugitive#statusline()}%1*\ %{&ff}\ %Y\ \[0x\%02.2B=\%03.3b]\ [%l,%v\ %p%%\ %Lb]\ %3*\[%F\]%1*
+
+" set number formats for Ctrl+A and Ctrl+X
+set nrformats=alpha,octal,hex
+
+" undo files
+if version >= 703
+  set undodir=~/.vim/undodir
+  set undofile
+endif
+
+
+
+" ----------------------
+" ---- Highlighting ----
+" ----------------------
+
+" diff highlighting
+highlight DiffAdd          cterm=none ctermfg=Black     ctermbg=Green   gui=none guifg=Black guibg=Green
+highlight DiffDelete       cterm=none ctermfg=Black     ctermbg=Red     gui=none guifg=Black guibg=Red
+highlight DiffChange       cterm=none ctermfg=Black     ctermbg=Yellow  gui=none guifg=Black guibg=Yellow
+highlight DiffText         cterm=none ctermfg=Black     ctermbg=Magenta gui=none guifg=Black guibg=Magenta
+
+" status line highlighting
+"highlight! User1           cterm=bold ctermfg=LightGrey ctermbg=52               guifg=Black guibg=#665555
+"highlight! User2           cterm=bold ctermfg=DarkGreen ctermbg=52               guifg=Green guibg=#443333
+"highlight! User3           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+"highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+
+" completion highlighting
+highlight Pmenu                       ctermfg=0         ctermbg=2
+highlight PmenuSel                    ctermfg=0         ctermbg=7
+highlight PmenuSbar                   ctermfg=7         ctermbg=0
+highlight PmenuThumb                  ctermfg=0         ctermbg=7
+
+" ----------------------
+" ---- Autocommands ----
+" ----------------------
+"
+if has("autocmd")
+  " set filetypes
+  autocmd BufNewFile,BufRead *.gv set filetype=dot
+  autocmd BufNewFile,BufRead *.feature set filetype=cucumber
+
+  " open files at the last opened position
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+  " automatically open and close the popup menu / preview window
+  autocmd CursorMovedI,InsertLeave * if pumvisible() == 0 | silent! pclose | endif
+
+  " remove trailing whitespace on write
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " source the vimrc file after saving it
+  autocmd BufWritePost .\=vimrc source $MYVIMRC
+
+  " Delete .netrwhist ( netrw history file ) after leaving vim
+  autocmd VimLeave * if filereadable(".netrwhist") | call delete(".netrwhist") | endif
+
+  " set radish as makeprg
+  autocmd FileType cucumber :call SetRadishAsMP()
+
+  " --------
+  "  mappings
+  " --------
+
+  " if FileType is c or cpp then execute make
+  autocmd FileType c,cpp,cucumber  map  <F5> :w<CR>:make<CR>
+  autocmd FileType c,cpp,cucumber  imap <F5> <ESC>:w<CR>:make<CR>
+
+  " if FileType is python then start python
+  autocmd FileType python          map  <F5> :w<CR>:!python "%"<CR>
+  autocmd FileType python          imap <F5> <ESC>:w<CR>:!python "%"<CR>
+
+  " if FileType is python then map Shift + F7 to vim-flake8
+  autocmd FileType python          map  <S-F7> :call Flake8()<CR>
+  autocmd FileType python          imap <S-F7> <ESC>:call Flake8()<CR>
+
+  "if use_pep8 == 1
+    "" if FileType is python then indent with 4 spaces instead of 2
+    "autocmd FileType python          setl tabstop=4 softtabstop=4 shiftwidth=4
+
+    "" call flake8 after writing a python file
+    "autocmd BufWritePost *.py call Flake8()
+  "endif
+
+  " if FileType is shell script then start shell script
+  autocmd FileType sh              map  <F5> :w<CR>:!$SHELL "%"<CR>
+  autocmd FileType sh              imap <F5> <ESC>:w<CR>:!$SHELL "%"<CR>
+endif
+
+" ------------------
+" ---- Mappings ----
+" ------------------
+
+" change window
+nnoremap <leader>1 1
+nnoremap <leader>2 2
+nnoremap <leader>3 3
+nnoremap <leader>4 4
+
+" clear search pattern
+map  <S-F2>     :nohlsearch<CR>
+imap <S-F2>     <ESC>:nohlsearch<CR>
+
+""nerdtree
+"map  <F3>      :NERDTreeToggle<CR>
+"imap <F3>      <ESC>:NERDTreeToggle<CR>
+
+"" signatures
+"map  <S-F3>    :SignatureToggle<CR>
+"map  <leader>m :SignatureToggle<CR>
+"imap <S-F3>    <ESC>:SignatureToggle<CR>
+
+"" git gutter
+"map  <S-F4>    :ToggleGitGutter<CR>
+"imap <S-F4>    <ESC>:ToggleGitGutter<CR>
+
+" Note: F5 is already mapped in autocmd section
+
+"" errormarker
+"map  <S-F5>    :ErrorAtCursor<CR>
+"imap <S-F5>    <ESC>:ErrorAtCursor<CR>
+
+"" Shebang
+"map  <S-F6>    :call SetExecutable()<CR>
+"imap <S-F6>    <ESC>:call SetExecutable()<CR>
+
+"" Doxygen
+"map  <F7>      :Dox<CR>
+"imap <F7>      <ESC>:Dox<CR>
+
+" Note: Shift + F7 is already mapped in autocmd section
+
+" ctags
+map  <F8>      :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
+imap <F8>      <ESC>:!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
+
+" Spelling
+map  <F9>      :set spell!<CR>
+imap <F9>      <ESC>:set spell!<CR>
+
+"" extradite.vim
+"map  <S-F9>    :Extradite<CR>
+"imap <S-F9>    <ESC>:Extradite<CR>
+
+" Next error to F10
+map  <F10>     :cn<CR>
+imap <F10>     <ESC>:cn<CR>
+"
+" shortcut to auto indent entire file
+map  <F11>     1G=G''
+imap <F11>     <ESC>1G=Ga''
+
+"" Conque shell horizontal split -> start ipython
+"map  <S-F11>   :ConqueTermSplit ipython<CR>
+"imap <S-F11>   <ESC>:ConqueTermSplit ipython<CR>
+
+"" Conque Shell horizontal split -> start bash
+"map  <S-F12>   :ConqueTermSplit bash<CR>
+"imap <S-F12>   <ESC>:ConqueTermSplit bash<CR>
+
+" toggle paste mode
+map  <S-x>     :set paste!<CR>
+
+" switch buffer mappings
+map  <a-left>       :bp<CR>
+imap <a-left>  <ESC>:bp<CR>
+map  <a-right>      :bn<CR>
+imap <a-right> <ESC>:bn<CR>
+map  <C-j>       :bp<CR>
+imap <C-j>  <ESC>:bp<CR>
+map  <C-k>      :bn<CR>
+imap <C-k> <ESC>:bn<CR>
+
+" remap code completion to Ctrl+Space
+inoremap <Nul> <C-x><C-o>
+"inoremap <C-@> <C-R>=SuperCleverTab()<CR>
+
+" smart home function
 function! SmartHome()
   let s:col = col(".")
   normal! ^
@@ -76,12 +257,35 @@ endfunction
 nnoremap <silent> <Home> :call SmartHome()<CR>
 inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
 
+" map highlighting group under cursor
+map <C-S-H> :call <SID>SynStack()<CR>
 
-" let have vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" -----------------------
+" ---- Plugin config ----
+" -----------------------
+
+"" support local vim config in .lvimrc
+"let g:localvimrc_ask = 0
+
+"" errormarker settings
+"let errormarker_errorgroup   = "ErrorMsg"
+"let errormarker_warninggroup = "Todo"
+
+"" errorformat for make and errormarker
+"let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+
+"" vim-flake8 max line length for PEP8
+"let g:flake8_max_line_length = 150
+
+"" Jedi automatically starts the completion, if you type a dot, e.g. str., if
+"" you don't want this, set it to "0"
+"let g:jedi#popup_on_dot = 1
+
+"" use the tux-colorscheme for powerline
+"let g:Powerline_colorscheme='tux'
+
+"" git gutter
+"let g:gitgutter_enabled = 0
 
 
 " DON'T EDIT BELOW
