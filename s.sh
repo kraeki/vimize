@@ -47,6 +47,17 @@ install)
 	done
 ;;
 
+# update plugins
+update)
+        echo "Updating plugins.."
+	for a in bundle/*; do
+          printf "%-30s: " $a
+          cd "$a"
+          git pull
+          cd ../..
+	done
+;;
+
 # remove plugin
 remove)
 	for a in $plugins; do
