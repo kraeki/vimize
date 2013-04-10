@@ -10,6 +10,8 @@ plugins="
   https://github.com/vim-scripts/a.vim.git
   https://github.com/vim-scripts/DoxygenToolkit.vim.git
   https://github.com/vim-scripts/AutoComplPop.git
+  https://github.com/nvie/vim-flake8.git
+  https://github.com/vim-scripts/errormarker.vim.git
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git
