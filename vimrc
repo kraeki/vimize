@@ -126,9 +126,6 @@ if has("autocmd")
   " Delete .netrwhist ( netrw history file ) after leaving vim
   autocmd VimLeave * if filereadable(".netrwhist") | call delete(".netrwhist") | endif
 
-  " set radish as makeprg
-  autocmd FileType cucumber :call SetRadishAsMP()
-
   " --------
   "  mappings
   " --------
