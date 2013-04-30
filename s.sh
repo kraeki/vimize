@@ -2,7 +2,7 @@
 
 plugins="
   https://github.com/vim-scripts/taglist.vim.git
-  https://github.com/MasterKey/OmniCppComplete.git
+  git@github.com:vim-scripts/ActionScript-3-Omnicomplete.git
   https://github.com/tpope/vim-fugitive.git
   https://github.com/vim-scripts/The-NERD-Commenter.git
   https://github.com/vim-scripts/Align.git
@@ -12,6 +12,7 @@ plugins="
   https://github.com/vim-scripts/AutoComplPop.git
   https://github.com/nvie/vim-flake8.git
   https://github.com/vim-scripts/errormarker.vim.git
+  https://github.com/millermedeiros/vim-statline.git
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git

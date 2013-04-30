@@ -65,10 +65,6 @@ set wildignore+=*.o,*.lo,*.la,*.obj,.git,*.pyc,*.so,*/.git/*
 " Don't show currect mode
 set noshowmode
 
-" status line settings
-set laststatus=2 " Always show the statusline
-"set statusline=%4*---%1*\ %F%m%r%h%w\ %2*%{fugitive#statusline()}%1*\ %{&ff}\ %Y\ \[0x\%02.2B=\%03.3b]\ [%l,%v\ %p%%\ %Lb]\ %3*\[%F\]%1*
-
 " set number formats for Ctrl+A and Ctrl+X
 set nrformats=alpha,octal,hex
 
@@ -77,8 +73,6 @@ if version >= 703
   set undodir=~/.vim/undodir
   set undofile
 endif
-
-
 
 " ----------------------
 " ---- Highlighting ----
@@ -91,16 +85,36 @@ highlight DiffChange       cterm=none ctermfg=Black     ctermbg=Yellow  gui=none
 highlight DiffText         cterm=none ctermfg=Black     ctermbg=Magenta gui=none guifg=Black guibg=Magenta
 
 " status line highlighting
-"highlight! User1           cterm=bold ctermfg=LightGrey ctermbg=52               guifg=Black guibg=#665555
-"highlight! User2           cterm=bold ctermfg=DarkGreen ctermbg=52               guifg=Green guibg=#443333
-"highlight! User3           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
-"highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+highlight! User1           cterm=bold ctermfg=LightGrey ctermbg=52               guifg=Black guibg=#665555
+highlight! User2           cterm=bold ctermfg=DarkGreen ctermbg=52               guifg=Green guibg=#443333
+highlight! User3           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
 
 " completion highlighting
 highlight Pmenu                       ctermfg=0         ctermbg=2
 highlight PmenuSel                    ctermfg=0         ctermbg=7
 highlight PmenuSbar                   ctermfg=7         ctermbg=0
 highlight PmenuThumb                  ctermfg=0         ctermbg=7
+
+" ----------------------
+" ---- Status line  ----
+" ----------------------
+" status line settings
+set laststatus=2 " Always show the statusline
+"set statusline=%4*---%1*\ %F%m%r%h%w\ %2*%{fugitive#statusline()}%1*\ %{&ff}\ %Y\ \[0x\%02.2B=\%03.3b]\ [%l,%v\ %p%%\ %Lb]\ %3*\[%F\]%1*
+"set statusline=   " clear the statusline for when vimrc is reloaded
+"set statusline=%t       "tail of the filename
+"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+"set statusline+=%{&ff}] "file format
+"set statusline+=%h      "help file flag
+"set statusline+=%m      "modified flag
+"set statusline+=%r      "read only flag
+"set statusline+=%y      "filetype
+"set statusline+=%=      "left/right separator
+"set statusline+=%c,     "cursor column
+"set statusline+=%l/%L   "cursor line/total lines
+"set statusline+=\ %P    "percent through file
+
 
 " ----------------------
 " ---- Autocommands ----
