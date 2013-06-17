@@ -12,7 +12,7 @@ plugins="
   https://github.com/vim-scripts/AutoComplPop.git
   https://github.com/nvie/vim-flake8.git
   https://github.com/vim-scripts/errormarker.vim.git
-  https://github.com/millermedeiros/vim-statline.git
+  https://github.com/Lokaltog/vim-powerline
 "
   #https://github.com/hotoo/calendar-vim.git
   #https://github.com/scrooloose/nerdtree.git
