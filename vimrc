@@ -5,6 +5,9 @@ call pathogen#infect()
 " ============
 syntax enable
 
+" clear highlighting
+highlight clear
+
 set t_Co=256 " enable 256 colors
 
 " limits
@@ -79,22 +82,17 @@ endif
 " ----------------------
 
 " diff highlighting
-highlight DiffAdd          cterm=none ctermfg=Black     ctermbg=Green   gui=none guifg=Black guibg=Green
-highlight DiffDelete       cterm=none ctermfg=Black     ctermbg=Red     gui=none guifg=Black guibg=Red
-highlight DiffChange       cterm=none ctermfg=Black     ctermbg=Yellow  gui=none guifg=Black guibg=Yellow
-highlight DiffText         cterm=none ctermfg=Black     ctermbg=Magenta gui=none guifg=Black guibg=Magenta
+highlight DiffAdd          cterm=none ctermfg=64     ctermbg=235 gui=none guifg=Black guibg=Green
+highlight DiffDelete       cterm=none ctermfg=124     ctermbg=235 gui=none guifg=Black guibg=Red
+highlight DiffChange       cterm=none ctermfg=136     ctermbg=235 gui=none guifg=Black guibg=Yellow
+highlight DiffText         cterm=none ctermfg=33     ctermbg=235 gui=none guifg=Black guibg=Magenta
 
 " status line highlighting
-highlight! User1           cterm=bold ctermfg=LightGrey ctermbg=52               guifg=Black guibg=#665555
-highlight! User2           cterm=bold ctermfg=DarkGreen ctermbg=52               guifg=Green guibg=#443333
-highlight! User3           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
-highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+"highlight! User1           cterm=bold ctermfg=LightGrey ctermbg=52               guifg=Black guibg=#665555
+"highlight! User2           cterm=bold ctermfg=DarkGreen ctermbg=52               guifg=Green guibg=#443333
+"highlight! User3           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
+"highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
 
-" completion highlighting
-highlight Pmenu                       ctermfg=0         ctermbg=2
-highlight PmenuSel                    ctermfg=0         ctermbg=7
-highlight PmenuSbar                   ctermfg=7         ctermbg=0
-highlight PmenuThumb                  ctermfg=0         ctermbg=7
 
 " ----------------------
 " ---- Status line  ----
@@ -256,23 +254,6 @@ inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
 " map highlighting group under cursor
 map <C-S-H> :call <SID>SynStack()<CR>
 
-" -----------------------
-" ---- Plugin config ----
-" -----------------------
-
-"" support local vim config in .lvimrc
-"let g:localvimrc_ask = 0
-
-"" Jedi automatically starts the completion, if you type a dot, e.g. str., if
-"" you don't want this, set it to "0"
-"let g:jedi#popup_on_dot = 1
-
-"" use the tux-colorscheme for powerline
-"let g:Powerline_colorscheme='tux'
-
-"" git gutter
-"let g:gitgutter_enabled = 0
-
 
 " DON'T EDIT BELOW
 
@@ -284,4 +265,3 @@ endfor
 for f in split( glob('~/.vim/config/*/vimrc'), '\n' )
   exe 'source' f
 endfor
-
