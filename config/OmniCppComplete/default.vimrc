@@ -25,7 +25,6 @@ endif
 " change color from pink (default) to green
 if version >= 700
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-  highlight   clear
   highlight   Pmenu         ctermfg=0 ctermbg=2
   highlight   PmenuSel      ctermfg=0 ctermbg=7
   highlight   PmenuSbar     ctermfg=7 ctermbg=0
