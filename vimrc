@@ -143,8 +143,8 @@ if has("autocmd")
   " --------
 
   " if FileType is c or cpp then execute make
-  autocmd FileType c,cpp,cucumber  map  <F5> :w<CR>:make<CR>
-  autocmd FileType c,cpp,cucumber  imap <F5> <ESC>:w<CR>:make<CR>
+  autocmd FileType c,cpp,cucumber,tex  map  <F5> :w<CR>:make<CR>
+  autocmd FileType c,cpp,cucumber,tex  imap <F5> <ESC>:w<CR>:make<CR>
 
   " if FileType is python then start python
   autocmd FileType python          map  <F5> :w<CR>:!python "%"<CR>
