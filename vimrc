@@ -142,6 +142,15 @@ if has("autocmd")
   "  mappings
   " --------
 
+  " scrolling
+  "nnoremap <C-S-J> j<C-e>
+  "nnoremap <C-S-K> k<C-y>
+
+  " selection
+  "noremap <S-End> v$
+  "noremap <S-Home> v^
+
+
   " if FileType is c or cpp then execute make
   autocmd FileType c,cpp,cucumber,tex  map  <F5> :w<CR>:make<CR>
   autocmd FileType c,cpp,cucumber,tex  imap <F5> <ESC>:w<CR>:make<CR>
@@ -149,7 +158,6 @@ if has("autocmd")
   " if FileType is python then start python
   autocmd FileType python          map  <F5> :w<CR>:!python "%"<CR>
   autocmd FileType python          imap <F5> <ESC>:w<CR>:!python "%"<CR>
-
 
   " if FileType is shell script then start shell script
   autocmd FileType sh              map  <F5> :w<CR>:!$SHELL "%"<CR>
