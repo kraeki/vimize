@@ -17,6 +17,7 @@ https://github.com/tsaleh/vim-matchit.git
 https://github.com/tpope/vim-surround.git
 
 https://github.com/msanders/snipmate.vim.git
+https://github.com/altercation/vim-colors-solarized.git
 "
 #https://github.com/tomtom/tlib_vim.git
 #https://github.com/MarcWeber/vim-addon-mw-utils.git
