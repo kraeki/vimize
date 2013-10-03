@@ -138,6 +138,10 @@ if has("autocmd")
   " Delete .netrwhist ( netrw history file ) after leaving vim
   autocmd VimLeave * if filereadable(".netrwhist") | call delete(".netrwhist") | endif
 
+  " load html5 highlighting
+  "autocmd FileType html  source ~/.vim/html5-syntax.vim
+  autocmd BufNewFile,BufRead *.html source ~/.vim/html5-syntax.vim
+
   " --------
   "  mappings
   " --------
