@@ -142,15 +142,6 @@ if has("autocmd")
   "  mappings
   " --------
 
-  " scrolling
-  "nnoremap <C-S-J> j<C-e>
-  "nnoremap <C-S-K> k<C-y>
-
-  " selection
-  "noremap <S-End> v$
-  "noremap <S-Home> v^
-
-
   " if FileType is c or cpp then execute make
   autocmd FileType c,cpp,cucumber,tex  map  <F5> :w<CR>:make<CR>
   autocmd FileType c,cpp,cucumber,tex  imap <F5> <ESC>:w<CR>:make<CR>
@@ -243,6 +234,40 @@ map  <C-j>       :bp<CR>
 imap <C-j>  <ESC>:bp<CR>
 map  <C-k>      :bn<CR>
 imap <C-k> <ESC>:bn<CR>
+
+" scrolling
+"nnoremap <C-S-J> j<C-e>
+"nnoremap <C-S-K> k<C-y>
+
+" selection
+"noremap <S-End> v$
+"noremap <S-Home> v^
+
+" autoclose braces
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+inoremap (      ()<Left>
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap ((     (
+inoremap ()     ()
+
+inoremap [      []<Left>
+inoremap [<CR>  [<CR>]<Esc>O
+inoremap [[     [
+inoremap []     []
+
+" open vimrc from any location
+"nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>v :e $MYVIMRC<CR>
+
+" tab navigation
+"inoremap <C-h>      :tabprevious<CR>
+"inoremap <C-h> <ESC>:tabprevious<CR>
+map  <C-l>      :tabnext<CR>
+imap <C-l> <ESC>:tabnext<CR>
 
 " remap code completion to Ctrl+Space
 inoremap <Nul> <C-x><C-o>
