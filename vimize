@@ -38,7 +38,52 @@ cd ~/.vim
 
 # public variables
 
+# checks state of plugin (e.g. 'calendar-vim')
+# returns 'i' -> installed
+#         '!' -> corrupted
+#         ' ' -> not installed
+#         'c' -> configured
+checkplugin()
+{
+  ret=""
+  plugin=$1
+  if [ -d bundle/${plugin} ] && [ -d config/${plugin} ]; then
+    # plugin is correctly installed
+    ret=$ret"i"
+  elif [ -d bundle/${plugin} ] || [ -d config/${plugin} ]; then
+    # plugin is corrupted ( one dir is missing )
+    ret="!"
+  fi
+  if [ -f config/${plugin}/vimrc ]; then
+    # plugin has custom configuration
+    ret=$ret"c"
+  fi
+  if [ "$ret" == "" ]; then
+    ret=$ret" "
+  fi
+  echo $ret
+}
+
 case $1 in
+
+  # show all available plugins
+  ls)
+  for a in $plugins; do
+    plugin=`basename $a | sed 's/.\{4\}$//'`
+    echo "["`checkplugin $plugin`"] "$plugin
+  done
+  exit
+  ;;
+
+  # edit custom config of a plugin
+  edit)
+  shift
+  if [ ! -d "config/$1" ]; then
+    echo "'config/$1' not found: make sure plugin is installed?"
+    exit
+  fi
+  exec vim config/$1/vimrc
+  ;;
 
   # git clone repo and setup config
   install)

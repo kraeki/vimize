@@ -247,22 +247,6 @@ imap <C-k> <ESC>:bn<CR>
 "noremap <S-End> v$
 "noremap <S-Home> v^
 
-" autoclose braces
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-
-inoremap (      ()<Left>
-inoremap (<CR>  (<CR>)<Esc>O
-inoremap ((     (
-inoremap ()     ()
-
-inoremap [      []<Left>
-inoremap [<CR>  [<CR>]<Esc>O
-inoremap [[     [
-inoremap []     []
-
 " open vimrc from any location
 "nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap <leader>v :e $MYVIMRC<CR>
