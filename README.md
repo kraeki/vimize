@@ -11,6 +11,7 @@ Installation
 git clone https://github.com/kraeki/vimize.git ~/.vim
 
 cd ~/.vim
+
 ./vimize install
 
 Edit configuration of plugin
