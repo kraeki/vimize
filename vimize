@@ -21,9 +21,11 @@ https://github.com/altercation/vim-colors-solarized.git
 https://github.com/Lokaltog/vim-easymotion.git
 
 https://github.com/vim-scripts/clang-complete.git
+https://github.com/davidhalter/jedi-vim.git
 "
 # Info:
-# clang-complete needs clang to be installed
+# clang-complete: aptitude install clang
+# jedi-vim: pip install jedi
 
 
 #https://github.com/tomtom/tlib_vim.git
