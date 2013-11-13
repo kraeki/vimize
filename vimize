@@ -124,26 +124,24 @@ case $1 in
 
   # remove plugin
   remove)
-  for a in $plugins; do
-    plugin=`basename $a | sed 's/.\{4\}$//'`
-    #if [ -d bundle/$plugin ]; then
+  plugin=$2
+  if [ -d bundle/$plugin ]; then
     echo remove "bundle/$plugin"
     rm -rf bundle/$plugin
-    #fi
-  done
+  fi
+  exit
   ;;
 
   # remove plugin inclusive config
   purge)
-  for a in $plugins; do
-    plugin=`basename $a | sed 's/.\{4\}$//'`
-    #if [ -d bundle/$plugin ]; then
+  plugin=$2
+  if [ -d bundle/$plugin ]; then
     rm -rf bundle/$plugin
     echo removed "bundle/$plugin"
     rm -rf config/$plugin
     echo removed config "config/$plugin"
-    #fi
-  done
+  fi
+  exit
   ;;
 
   # clone to other computer
