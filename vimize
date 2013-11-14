@@ -1,5 +1,7 @@
 #!/bin/bash
 
+programm=$0
+
 plugins="
 https://github.com/vim-scripts/taglist.vim.git
 https://github.com/vim-scripts/ActionScript-3-Omnicomplete.git
@@ -59,8 +61,8 @@ checkplugin()
   if [ -d bundle/${plugin} ] && [ -d config/${plugin} ]; then
     # plugin is correctly installed
     ret=$ret"i"
-  elif [ -d bundle/${plugin} ] || [ -d config/${plugin} ]; then
-    # plugin is corrupted ( one dir is missing )
+  elif [ -d bundle/${plugin} ] && [ ! -d config/${plugin} ]; then
+    # plugin is corrupted ( config is missing )
     ret="!"
   fi
   if [ -f config/${plugin}/vimrc ]; then
@@ -73,14 +75,19 @@ checkplugin()
   echo $ret
 }
 
+function list_plugins()
+{
+  for a in $plugins; do
+    plugin=`basename $a | sed 's/.\{4\}$//'`
+    echo "  [`checkplugin $plugin`] $plugin"
+  done
+}
+
 case $1 in
 
   # show all available plugins
   ls)
-  for a in $plugins; do
-    plugin=`basename $a | sed 's/.\{4\}$//'`
-    echo "["`checkplugin $plugin`"] "$plugin
-  done
+  list_plugins
   exit
   ;;
 
@@ -96,22 +103,54 @@ case $1 in
 
   # git clone repo and setup config
   install)
-  if [ ! -e ~/.vimrc ]; then
-    ln -s ~/.vim/vimrc ~/.vimrc
-  fi
-  for a in $plugins; do
-    plugin=`basename $a | sed 's/.\{4\}$//'`
-    if [ ! -d "bundle/$plugin" ]; then
+  function install( )
+  {
+    local plugin=$1
+    if [ ! -d bundle/$plugin ]; then
       # clone repo
       echo clone $a
       cd bundle
       git clone $a
       cd -
-
       # create config folder
       mkdir -p config/$plugin
     fi
-  done
+  }
+
+  # install sysmlink
+  if [ ! -e ~/.vimrc ]; then
+    ln -s ~/.vim/vimrc ~/.vimrc
+  fi
+  # install all plugin
+  if [[ $2 == "-a" ]]; then
+    allplugins="`list_plugins`"
+
+    count=`echo "$allplugins" | grep "\[\]" | wc -l`
+    if [[ $count == 0 ]]; then
+      echo "all plugins are already installed. use '$programm ls' to list plugins"
+      exit
+    fi
+
+    echo "installing plugins ..."
+    echo "$allplugins" | grep "\[\]"
+
+    echo -n "Do you want to install all listed plugins? [y/N]: "
+    read answer
+    if [[ "$answer" != "y" || "$answer" != "Y" ]]; then
+      exit 0
+    fi
+    for a in $plugins; do
+      plugin=`basename $a | sed 's/.\{4\}$//'`
+      install "$plugin"
+    done
+  # install one specific plugin
+  else
+    if [[ $2 == "" ]]; then
+      echo "usage: $programm install <plugin>"
+      exit 1
+    fi
+    install $2
+  fi
   ;;
 
   # update plugins
@@ -152,7 +191,7 @@ case $1 in
   clone)
   shift
   if [ -z "$1"  ]; then
-    echo Usage: `basename $0` clone user@host "(e.g. andreasschmid@192.168.123.114)"
+    echo Usage: `basename $programm` clone user@host "(e.g. andreasschmid@192.168.123.114)"
     exit 1
   fi
   ssh $1 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.$(date +%Y%m%d%H%M%S); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
@@ -163,7 +202,7 @@ case $1 in
   pull)
   shift
   if [ -z "$1"  ]; then
-    echo Usage: `basename $0` pull user@host "(e.g. andreasschmid@192.168.123.114)"
+    echo Usage: `basename $programm` pull user@host "(e.g. andreasschmid@192.168.123.114)"
     exit 1
   fi
   git clone ssh://$1/~/.vim ~/.vim
