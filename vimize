@@ -103,6 +103,9 @@ case $1 in
 
   # git clone repo and setup config
   install)
+  if [ ! -d bundle]; then
+    mkdir bundle
+  fi
   function install( )
   {
     local plugin=$1
@@ -136,7 +139,8 @@ case $1 in
 
     echo -n "Do you want to install all listed plugins? [y/N]: "
     read answer
-    if [[ "$answer" != "y" || "$answer" != "Y" ]]; then
+    echo "asdf: $answer"
+    if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
       exit 0
     fi
     for a in $plugins; do
