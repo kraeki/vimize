@@ -1,40 +1,22 @@
 #!/bin/bash
 
 programm=$0
-PLUGIN_INSTALL_DIR=~/.vim/bundle
-PLUGIN_CONFIG_DIR=~/.vim/config
+VZ_PLUGIN_INSTALL_DIR=~/.vim/bundle
+VZ_PLUGIN_CONFIG_DIR=~/.vim/config
+SOURCE_LIST_FILE=~/.vim/src.list
 
-if [[ ! -d "$PLUGIN_INSTALL_DIR" ]]; then
-  mkdir -p "$PLUGIN_INSTALL_DIR"
+if [[ ! -d "$VZ_PLUGIN_INSTALL_DIR" ]]; then
+  mkdir -p "$VZ_PLUGIN_INSTALL_DIR"
 fi
-if [[ ! -d "$PLUGIN_CONFIG_DIR" ]]; then
-  mkdir -p "$PLUGIN_CONFIG_DIR"
+if [[ ! -d "$VZ_PLUGIN_CONFIG_DIR" ]]; then
+  mkdir -p "$VZ_PLUGIN_CONFIG_DIR"
+fi
+if [[ ! -f "$SOURCE_LIST_FILE" ]]; then
+  touch "$SOURCE_LIST_FILE"
 fi
 
-plugins="
-https://github.com/vim-scripts/taglist.vim.git
-https://github.com/vim-scripts/ActionScript-3-Omnicomplete.git
-https://github.com/tpope/vim-fugitive.git
-https://github.com/vim-scripts/The-NERD-Commenter.git
-https://github.com/vim-scripts/Align.git
-https://github.com/kien/ctrlp.vim.git
-https://github.com/vim-scripts/a.vim.git
-https://github.com/vim-scripts/DoxygenToolkit.vim.git
-https://github.com/vim-scripts/AutoComplPop.git
-https://github.com/nvie/vim-flake8.git
-https://github.com/vim-scripts/errormarker.vim.git
-https://github.com/Lokaltog/vim-powerline.git
-https://github.com/tsaleh/vim-matchit.git
-https://github.com/tpope/vim-surround.git
-https://github.com/vim-scripts/closetag.vim.git
+vz_plugins="`sed 's/#.*$//; /^$/d' "$SOURCE_LIST_FILE"`"
 
-https://github.com/msanders/snipmate.vim.git
-https://github.com/altercation/vim-colors-solarized.git
-https://github.com/Lokaltog/vim-easymotion.git
-
-https://github.com/vim-scripts/clang-complete.git
-https://github.com/davidhalter/jedi-vim.git
-"
 # Info:
 # clang-complete: aptitude install clang
 # jedi-vim: pip install jedi
@@ -52,6 +34,7 @@ https://github.com/davidhalter/jedi-vim.git
 #https://github.com/vim-scripts/DoxygenToolkit.vim.git
 
 #https://github.com/vim-scripts/indentpython.vim.git
+
 
 user=`whoami`
 
@@ -87,7 +70,7 @@ checkplugin()
 
 function list_plugins()
 {
-  for a in $plugins; do
+  for a in $vz_plugins; do
     local plugin=`basename $a | sed 's/.\{4\}$//'`
     echo "  [`checkplugin $plugin`] $plugin"
   done
@@ -96,10 +79,10 @@ function list_plugins()
 function install( )
 {
   local plugin=$1
-  for a in $plugins; do
+  for a in $vz_plugins; do
     local p=`basename $a | sed 's/.\{4\}$//'`
     if [[ "$p" == "$plugin" ]]; then
-      if [[ ! -d "$PLUGIN_INSTALL_DIR/$plugin" ]]; then
+      if [[ ! -d "$VZ_PLUGIN_INSTALL_DIR/$plugin" ]]; then
         # clone repo
         echo clone $a
         cd bundle
@@ -115,22 +98,6 @@ function install( )
 
 case $1 in
 
-  # show all available plugins
-  ls)
-  list_plugins
-  exit
-  ;;
-
-  # edit custom config of a plugin
-  edit)
-  shift
-  if [ ! -d "config/$1" ]; then
-    echo "'config/$1' not found: make sure plugin is installed?"
-    exit
-  fi
-  exec vim config/$1/vimrc
-  ;;
-
   init)
     # create sysmlink
     if [ ! -e ~/.vimrc ]; then
@@ -138,7 +105,7 @@ case $1 in
       ln -s ~/.vim/vimrc ~/.vimrc
     fi
 
-    allplugins="`list_plugins`"
+    allplugins="`list_vz_plugins`"
     count=`echo "$allplugins" | grep "\[\]" | wc -l`
     if [[ $count == 0 ]]; then
       echo "all plugins are already installed. use '$programm ls' to list plugins"
@@ -159,8 +126,32 @@ case $1 in
     exit 0
     ;;
 
-  # install git clone repo and setup config
-  install)
+
+  add) # add plugin to repo
+    if [[ $2 == "" ]]; then
+      echo "usage: $programm add <source>"
+      exit 1
+    fi
+    src=$2
+
+    echo $src >> "$SOURCE_LIST_FILE"
+    ;;
+
+  ls)
+  list_plugins
+  exit
+  ;;
+
+  edit) # edit custom config of plugin
+  shift
+  if [ ! -d "config/$1" ]; then
+    echo "'config/$1' not found: make sure plugin is installed?"
+    exit
+  fi
+  exec vim config/$1/vimrc
+  ;;
+
+  install) # install plugin (git clone repo and setup config)
     if [[ $2 == "" ]]; then
       echo "usage: $programm install <plugin>"
       exit 1
@@ -168,8 +159,7 @@ case $1 in
     install $2
   ;;
 
-  # update plugins
-  update)
+  update) # update plugins (git pull --rebase )
   echo "Updating plugins.."
   for a in bundle/*; do
     printf "%-30s: " $a
@@ -179,8 +169,7 @@ case $1 in
   done
   ;;
 
-  # remove plugin
-  remove)
+  remove) # remove plugin
   shift
   o_purge=0
   o_plugin=""
@@ -199,13 +188,13 @@ case $1 in
     exit 1
   fi
 
-  if [[ -d "$PLUGIN_INSTALL_DIR/$o_plugin" ]]; then
-    rm -rf "$PLUGIN_INSTALL_DIR/$o_plugin"
+  if [[ -d "$VZ_PLUGIN_INSTALL_DIR/$o_plugin" ]]; then
+    rm -rf "$VZ_PLUGIN_INSTALL_DIR/$o_plugin"
     echo deleted plugin $o_plugin
   fi
 
-  if [[ $o_purge == 1 ]] && [[ -f "$PLUGIN_CONFIG_DIR/$o_plugin/vimrc" ]]; then
-    rm -rf "$PLUGIN_CONFIG_DIR/$o_plugin/vimrc"
+  if [[ $o_purge == 1 ]] && [[ -f "$VZ_PLUGIN_CONFIG_DIR/$o_plugin/vimrc" ]]; then
+    rm -rf "$VZ_PLUGIN_CONFIG_DIR/$o_plugin/vimrc"
     echo deleted config
   fi
   exit
