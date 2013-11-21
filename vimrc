@@ -113,12 +113,12 @@ set laststatus=2 " Always show the statusline
 "set statusline+=%l/%L   "cursor line/total lines
 "set statusline+=\ %P    "percent through file
 
-
 " ----------------------
 " ---- Autocommands ----
 " ----------------------
 "
 if has("autocmd")
+
   " set filetypes
   autocmd BufNewFile,BufRead *.gv set filetype=dot
   autocmd BufNewFile,BufRead *.feature set filetype=cucumber

@@ -85,13 +85,15 @@ function install( )
       if [[ ! -d "$VZ_PLUGIN_INSTALL_DIR/$plugin" ]]; then
         # clone repo
         echo clone $a
-        cd bundle
+        cd "$VZ_PLUGIN_INSTALL_DIR"
         git clone $a
         cd -
-        # create config folder
-        mkdir -p config/$plugin
       fi
-      exit 0
+      if [[ ! -d "$VZ_PLUGIN_CONFIG_DIR/$plugin" ]]; then
+        # create config folder
+        mkdir -p $VZ_PLUGIN_CONFIG_DIR/$plugin
+      fi
+      return
     fi
   done
 }
@@ -105,7 +107,7 @@ case $1 in
       ln -s ~/.vim/vimrc ~/.vimrc
     fi
 
-    allplugins="`list_vz_plugins`"
+    allplugins="`list_plugins`"
     count=`echo "$allplugins" | grep "\[\]" | wc -l`
     if [[ $count == 0 ]]; then
       echo "all plugins are already installed. use '$programm ls' to list plugins"
@@ -119,7 +121,7 @@ case $1 in
     if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
       exit 0
     fi
-    for a in $plugins; do
+    for a in $vz_plugins; do
       plugin=`basename $a | sed 's/.\{4\}$//'`
       install "$plugin"
     done
