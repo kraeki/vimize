@@ -9,20 +9,16 @@ Installation
 ------------
 
 git clone https://github.com/kraeki/vimize.git ~/.vim
-
 cd ~/.vim
+./vimize init
 
-./vimize install
-
-Edit configuration of plugin
------------------------------
-
-./vimize edit <plugin>
-
-Show available plugins and state
+Commands list
 --------------------------------
 
-./vimize ls
+./vimize ls                 - list plugins with state information
+./vimize edit <plugin>      - edit vimrc of plugin
+./vimize install <plugin>   - install plugin
+./vimize remove <plugin>    - remove plugin
 
 License
 -------

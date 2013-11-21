@@ -1,6 +1,15 @@
 #!/bin/bash
 
 programm=$0
+PLUGIN_INSTALL_DIR=~/.vim/bundle
+PLUGIN_CONFIG_DIR=~/.vim/config
+
+if [[ ! -d "$PLUGIN_INSTALL_DIR" ]]; then
+  mkdir -p "$PLUGIN_INSTALL_DIR"
+fi
+if [[ ! -d "$PLUGIN_CONFIG_DIR" ]]; then
+  mkdir -p "$PLUGIN_CONFIG_DIR"
+fi
 
 plugins="
 https://github.com/vim-scripts/taglist.vim.git
@@ -31,6 +40,7 @@ https://github.com/davidhalter/jedi-vim.git
 # jedi-vim: pip install jedi
 
 
+#https://github.com/vim-scripts/javacomplete.git
 #https://github.com/tomtom/tlib_vim.git
 #https://github.com/MarcWeber/vim-addon-mw-utils.git
 #https://github.com/garbas/vim-snipmate.git
@@ -78,8 +88,28 @@ checkplugin()
 function list_plugins()
 {
   for a in $plugins; do
-    plugin=`basename $a | sed 's/.\{4\}$//'`
+    local plugin=`basename $a | sed 's/.\{4\}$//'`
     echo "  [`checkplugin $plugin`] $plugin"
+  done
+}
+
+function install( )
+{
+  local plugin=$1
+  for a in $plugins; do
+    local p=`basename $a | sed 's/.\{4\}$//'`
+    if [[ "$p" == "$plugin" ]]; then
+      if [[ ! -d "$PLUGIN_INSTALL_DIR/$plugin" ]]; then
+        # clone repo
+        echo clone $a
+        cd bundle
+        git clone $a
+        cd -
+        # create config folder
+        mkdir -p config/$plugin
+      fi
+      exit 0
+    fi
   done
 }
 
@@ -101,45 +131,24 @@ case $1 in
   exec vim config/$1/vimrc
   ;;
 
-  # git clone repo and setup config
-  install)
-  if [ ! -d bundle]; then
-    mkdir bundle
-  fi
-  function install( )
-  {
-    local plugin=$1
-    if [ ! -d bundle/$plugin ]; then
-      # clone repo
-      echo clone $a
-      cd bundle
-      git clone $a
-      cd -
-      # create config folder
-      mkdir -p config/$plugin
+  init)
+    # create sysmlink
+    if [ ! -e ~/.vimrc ]; then
+      echo "creating symlink ~/.vimrc => ~/.vim/vimrc"
+      ln -s ~/.vim/vimrc ~/.vimrc
     fi
-  }
 
-  # install sysmlink
-  if [ ! -e ~/.vimrc ]; then
-    ln -s ~/.vim/vimrc ~/.vimrc
-  fi
-  # install all plugin
-  if [[ $2 == "-a" ]]; then
     allplugins="`list_plugins`"
-
     count=`echo "$allplugins" | grep "\[\]" | wc -l`
     if [[ $count == 0 ]]; then
       echo "all plugins are already installed. use '$programm ls' to list plugins"
       exit
     fi
 
-    echo "installing plugins ..."
+    echo "plugins to be installed:"
     echo "$allplugins" | grep "\[\]"
-
     echo -n "Do you want to install all listed plugins? [y/N]: "
     read answer
-    echo "asdf: $answer"
     if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
       exit 0
     fi
@@ -147,14 +156,16 @@ case $1 in
       plugin=`basename $a | sed 's/.\{4\}$//'`
       install "$plugin"
     done
-  # install one specific plugin
-  else
+    exit 0
+    ;;
+
+  # install git clone repo and setup config
+  install)
     if [[ $2 == "" ]]; then
       echo "usage: $programm install <plugin>"
       exit 1
     fi
     install $2
-  fi
   ;;
 
   # update plugins
@@ -170,22 +181,32 @@ case $1 in
 
   # remove plugin
   remove)
-  plugin=$2
-  if [ -d bundle/$plugin ]; then
-    echo remove "bundle/$plugin"
-    rm -rf bundle/$plugin
-  fi
-  exit
-  ;;
+  shift
+  o_purge=0
+  o_plugin=""
+  for arg in "$@"; do
+    case $arg in
+      -p|--purge)
+       o_purge=1
+        ;;
+      *)
+        o_plugin=$arg
+    esac
+  done
 
-  # remove plugin inclusive config
-  purge)
-  plugin=$2
-  if [ -d bundle/$plugin ]; then
-    rm -rf bundle/$plugin
-    echo removed "bundle/$plugin"
-    rm -rf config/$plugin
-    echo removed config "config/$plugin"
+  if [[ "$o_plugin" == "" ]]; then
+    echo "usage: $programm remove [-p|--purge] <plugin>"
+    exit 1
+  fi
+
+  if [[ -d "$PLUGIN_INSTALL_DIR/$o_plugin" ]]; then
+    rm -rf "$PLUGIN_INSTALL_DIR/$o_plugin"
+    echo deleted plugin $o_plugin
+  fi
+
+  if [[ $o_purge == 1 ]] && [[ -f "$PLUGIN_CONFIG_DIR/$o_plugin/vimrc" ]]; then
+    rm -rf "$PLUGIN_CONFIG_DIR/$o_plugin/vimrc"
+    echo deleted config
   fi
   exit
   ;;
@@ -195,7 +216,7 @@ case $1 in
   clone)
   shift
   if [ -z "$1"  ]; then
-    echo Usage: `basename $programm` clone user@host "(e.g. andreasschmid@192.168.123.114)"
+    echo "usage: $programm clone user@host (e.g. andreasschmid@192.168.123.114)"
     exit 1
   fi
   ssh $1 'if [ -d ~/.vim ]; then mv ~/.vim ~/.vim.$(date +%Y%m%d%H%M%S); fi; git clone https://github.com/kraeki/vimize.git ~/.vim && ~/.vim/s.sh install'
@@ -206,14 +227,14 @@ case $1 in
   pull)
   shift
   if [ -z "$1"  ]; then
-    echo Usage: `basename $programm` pull user@host "(e.g. andreasschmid@192.168.123.114)"
+    echo "usage: $programm pull user@host (e.g. andreasschmid@192.168.123.114)"
     exit 1
   fi
   git clone ssh://$1/~/.vim ~/.vim
   ;;
 
 *)
-  echo "That option is not recognized"
+  echo "that option is not recognized"
   ;;
 
 esac
