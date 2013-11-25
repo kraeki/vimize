@@ -5,7 +5,6 @@ https://github.com/vim-scripts/Align.git
 https://github.com/kien/ctrlp.vim.git
 https://github.com/vim-scripts/a.vim.git
 https://github.com/vim-scripts/DoxygenToolkit.vim.git
-https://github.com/vim-scripts/AutoComplPop.git
 https://github.com/nvie/vim-flake8.git
 https://github.com/vim-scripts/errormarker.vim.git
 https://github.com/Lokaltog/vim-powerline.git
@@ -19,7 +18,5 @@ https://github.com/altercation/vim-colors-solarized.git
 https://github.com/Lokaltog/vim-easymotion.git
 
 # for completion
-https://github.com/vim-scripts/ActionScript-3-Omnicomplete.git
-https://github.com/vim-scripts/clang-complete.git
-https://github.com/davidhalter/jedi-vim.git
+https://github.com/Valloric/YouCompleteMe.git
 https://github.com/vim-scripts/javacomplete.git
