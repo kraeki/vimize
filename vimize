@@ -66,9 +66,8 @@ function install( )
       if [[ ! -d "$VZ_PLUGIN_INSTALL_DIR/$plugin" ]]; then
         # clone repo
         echo clone $a
-        cd "$VZ_PLUGIN_INSTALL_DIR"
-        git clone $a
-        cd -
+        ( cd "$VZ_PLUGIN_INSTALL_DIR"; git clone $a )
+        ( cd "$VZ_PLUGIN_INSTALL_DIR/$p"; git submodule update --init --recursive )
       fi
       if [[ ! -d "$VZ_PLUGIN_CONFIG_DIR/$plugin" ]]; then
         # create config folder
