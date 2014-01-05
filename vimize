@@ -68,7 +68,7 @@ function install( )
         echo clone $a
         ( cd "$VZ_PLUGIN_INSTALL_DIR"; git clone $a )
         ( cd "$VZ_PLUGIN_INSTALL_DIR/$plugin"; git submodule update --init --recursive )
-        if [[ ! -f "$VZ_PLUGIN_CONFIG_DIR/$plugin/install" ]]; then
+        if [[ -f "$VZ_PLUGIN_CONFIG_DIR/$plugin/install" ]]; then
           echo execute install "$VZ_PLUGIN_CONFIG_DIR/$plugin/install"
           ( cd "$VZ_PLUGIN_INSTALL_DIR/$plugin"; bash "$VZ_PLUGIN_CONFIG_DIR/$plugin/install" )
         fi

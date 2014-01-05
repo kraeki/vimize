@@ -1,1 +1,2 @@
+sudo aptitude install cmake
 ./install.sh --clang-completer
