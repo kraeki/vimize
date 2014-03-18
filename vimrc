@@ -218,6 +218,10 @@ imap <F10>     <ESC>:cn<CR>
 map  <F11>     1G=G''
 imap <F11>     <ESC>1G=Ga''
 
+" shortcut to replace word under cursor
+nnoremap <leader>*   :%s/<c-r><c-w>/<c-r><c-w>/gc<Left><Left><Left>
+vnoremap <leader>*   :s/<c-r><c-w>/<c-r><c-w>/gc<Left><Left><Left>
+
 "" Conque shell horizontal split -> start ipython
 "map  <S-F11>   :ConqueTermSplit ipython<CR>
 "imap <S-F11>   <ESC>:ConqueTermSplit ipython<CR>
