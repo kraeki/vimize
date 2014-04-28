@@ -20,3 +20,6 @@ https://github.com/Lokaltog/vim-easymotion.git
 # for completion
 https://github.com/Valloric/YouCompleteMe.git
 https://github.com/vim-scripts/javacomplete.git
+
+# html
+https://github.com/gcmt/breeze.vim.git
