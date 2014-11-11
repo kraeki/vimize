@@ -12,7 +12,11 @@ https://github.com/tsaleh/vim-matchit.git
 https://github.com/tpope/vim-surround.git
 https://github.com/vim-scripts/closetag.vim.git
 
-https://github.com/msanders/snipmate.vim.git
+# snippets
+https://github.com/SirVer/ultisnips.git
+https://github.com/honza/vim-snippets.git
+#https://github.com/msanders/snipmate.vim.git
+
 https://github.com/altercation/vim-colors-solarized.git
 
 https://github.com/Lokaltog/vim-easymotion.git
