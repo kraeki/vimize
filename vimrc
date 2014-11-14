@@ -16,6 +16,10 @@ set history=500
 " map leader key to comma (,)
 let mapleader=","
 
+" line numbers
+set number
+set relativenumber
+
 " tab settings
 set expandtab
 set shiftwidth=2
@@ -173,18 +177,8 @@ nnoremap <leader>4 4
 map  <S-F2>     :nohlsearch<CR>
 imap <S-F2>     <ESC>:nohlsearch<CR>
 
-""nerdtree
-"map  <F3>      :NERDTreeToggle<CR>
-"imap <F3>      <ESC>:NERDTreeToggle<CR>
-
-"" signatures
-"map  <S-F3>    :SignatureToggle<CR>
-"map  <leader>m :SignatureToggle<CR>
-"imap <S-F3>    <ESC>:SignatureToggle<CR>
-
-"" git gutter
-"map  <S-F4>    :ToggleGitGutter<CR>
-"imap <S-F4>    <ESC>:ToggleGitGutter<CR>
+" toggle numbering
+map  <F3>      :set number! relativenumber!<CR>
 
 " Note: F5 is already mapped in autocmd section
 
