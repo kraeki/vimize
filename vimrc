@@ -29,6 +29,7 @@ set softtabstop=2
 set cindent
 set autoindent
 set smartindent
+set backspace=indent,eol,start
 
 " folding
 set nofoldenable
