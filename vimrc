@@ -180,6 +180,7 @@ imap <S-F2>     <ESC>:nohlsearch<CR>
 
 " toggle numbering
 map  <F3>      :set number! relativenumber!<CR>
+imap  <F3>     :set number! relativenumber!<CR>
 
 " Note: F5 is already mapped in autocmd section
 
