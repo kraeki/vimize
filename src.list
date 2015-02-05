@@ -6,7 +6,11 @@ https://github.com/kien/ctrlp.vim.git
 https://github.com/vim-scripts/a.vim.git
 https://github.com/vim-scripts/DoxygenToolkit.vim.git
 https://github.com/vim-scripts/errormarker.vim.git
+
+# power lines
 https://github.com/Lokaltog/vim-powerline.git
+https://github.com/bling/vim-airline.git
+
 https://github.com/tsaleh/vim-matchit.git
 https://github.com/tpope/vim-surround.git
 https://github.com/vim-scripts/closetag.vim.git
