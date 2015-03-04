@@ -179,8 +179,8 @@ map  <S-F2>     :nohlsearch<CR>
 imap <S-F2>     <ESC>:nohlsearch<CR>
 
 " toggle numbering
-map  <F3>      :set number! relativenumber!<CR>
-imap  <F3>     :set number! relativenumber!<CR>
+map  <F8>      :set number! relativenumber!<CR>
+imap  <F8>     :set number! relativenumber!<CR>
 
 " Note: F5 is already mapped in autocmd section
 
