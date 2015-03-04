@@ -194,10 +194,6 @@ imap  <F3>     :set number! relativenumber!<CR>
 
 " Note: Shift + F7 is already mapped in autocmd section
 
-" ctags
-map  <F8>      :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
-imap <F8>      <ESC>:!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --links=no .<CR>
-
 " Spelling
 map  <F9>      :set spell!<CR>
 imap <F9>      <ESC>:set spell!<CR>
