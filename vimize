@@ -179,10 +179,12 @@ case $1 in
     echo deleted plugin $o_plugin
   fi
 
+  set -x
   if [[ $o_purge == 1 ]] && [[ -f "$VZ_PLUGIN_CONFIG_DIR/$o_plugin/vimrc" ]]; then
     rm -rf "$VZ_PLUGIN_CONFIG_DIR/$o_plugin/vimrc"
     echo deleted config
   fi
+  set +x
   exit
   ;;
 
