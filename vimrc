@@ -248,8 +248,8 @@ imap <C-k> <ESC>:bn<CR>
 nmap <leader>v :e $MYVIMRC<CR>
 
 " tab navigation
-"inoremap <C-h>      :tabprevious<CR>
-"inoremap <C-h> <ESC>:tabprevious<CR>
+map <C-h>      :tabprevious<CR>
+imap <C-h> <ESC>:tabprevious<CR>
 map  <C-l>      :tabnext<CR>
 imap <C-l> <ESC>:tabnext<CR>
 
@@ -267,10 +267,6 @@ function! SmartHome()
 endfunction
 nnoremap <silent> <Home> :call SmartHome()<CR>
 inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
-
-" map highlighting group under cursor
-map <C-S-H> :call <SID>SynStack()<CR>
-
 
 " DON'T EDIT BELOW
 
