@@ -12,8 +12,9 @@ https://github.com/vim-scripts/DoxygenToolkit.vim.git
 https://github.com/vim-scripts/errormarker.vim.git
 
 # power lines
-https://github.com/Lokaltog/vim-powerline.git
+#https://github.com/Lokaltog/vim-powerline.git
 https://github.com/bling/vim-airline.git
+https://github.com/bling/vim-bufferline.git
 
 https://github.com/tsaleh/vim-matchit.git
 https://github.com/tpope/vim-surround.git
@@ -36,7 +37,7 @@ https://github.com/scrooloose/syntastic.git
 https://github.com/gcmt/breeze.vim.git
 
 # better view
-https://github.com/Yggdroot/indentLine.git
+#https://github.com/Yggdroot/indentLine.git
 
 # python
 https://github.com/nvie/vim-flake8.git
