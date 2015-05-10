@@ -177,6 +177,9 @@ nnoremap <leader>2 2
 nnoremap <leader>3 3
 nnoremap <leader>4 4
 
+" switch background mode
+nnoremap <leader>l :set background=light<CR>
+
 " clear search pattern
 map  <S-F2>     :nohlsearch<CR>
 imap <S-F2>     <ESC>:nohlsearch<CR>
