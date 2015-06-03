@@ -1,2 +1,2 @@
-let g:airline_extensions_tabline_enabled = 1
-
+let g:airline#extensions#tabline#enabled = 0
+"let g:airline#extensions#tabline#fnamemod = ':t'
