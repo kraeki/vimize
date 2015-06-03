@@ -220,6 +220,10 @@ imap <F11>     <ESC>1G=Ga''
 nnoremap <leader>*   :%s/<c-r><c-w>/<c-r><c-w>/gc<Left><Left><Left>
 vnoremap <leader>*   :s/<c-r><c-w>/<c-r><c-w>/gc<Left><Left><Left>
 
+" shortcut to Ggrep word under curser or selected text in visual mode
+nnoremap <leader>g :Ggrep '\b<C-R><C-W>\b'<CR>:cw<CR>
+vmap <leader>g     y:Ggrep '<C-R>"'<CR>:cw<CR>
+
 "" Conque shell horizontal split -> start ipython
 "map  <S-F11>   :ConqueTermSplit ipython<CR>
 "imap <S-F11>   <ESC>:ConqueTermSplit ipython<CR>
