@@ -14,7 +14,7 @@ https://github.com/vim-scripts/errormarker.vim.git
 # power lines
 #https://github.com/Lokaltog/vim-powerline.git
 https://github.com/bling/vim-airline.git
-https://github.com/bling/vim-bufferline.git
+#https://github.com/bling/vim-bufferline.git
 
 https://github.com/tsaleh/vim-matchit.git
 https://github.com/tpope/vim-surround.git
