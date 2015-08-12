@@ -43,3 +43,6 @@ https://github.com/gcmt/breeze.vim.git
 
 # python
 https://github.com/nvie/vim-flake8.git
+
+# improve file handling
+https://github.com/bogado/file-line.git
