@@ -13,9 +13,3 @@ let g:ctrlp_custom_ignore = '\.git/*'
 let g:ctrlp_open_multiple_files = 'ijr'
 let g:ctrlp_working_path_mode = 'wra'
 
-
-" always files in new tabs instead of buffers
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }

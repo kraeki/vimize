@@ -31,9 +31,6 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 
-" tabs
-set switchbuf=useopen,usetab,newtab
-
 " folding
 set nofoldenable
 
@@ -240,6 +237,10 @@ map  <a-left>       :bp<CR>
 imap <a-left>  <ESC>:bp<CR>
 map  <a-right>      :bn<CR>
 imap <a-right> <ESC>:bn<CR>
+map  <C-j>       :bp<CR>
+imap <C-j>  <ESC>:bp<CR>
+map  <C-k>      :bn<CR>
+imap <C-k> <ESC>:bn<CR>
 
 " scrolling
 "nnoremap <C-S-J> j<C-e>
@@ -254,15 +255,10 @@ imap <a-right> <ESC>:bn<CR>
 nmap <leader>v :e $MYVIMRC<CR>
 
 " tab navigation
-map <C-h>      :tabprevious<CR>
-imap <C-h> <ESC>:tabprevious<CR>
+"inoremap <C-h>      :tabprevious<CR>
+"inoremap <C-h> <ESC>:tabprevious<CR>
 map  <C-l>      :tabnext<CR>
 imap <C-l> <ESC>:tabnext<CR>
-
-map  <C-j>       :tabprevious<CR>
-imap <C-j>  <ESC>:tabprevious<CR>
-map  <C-k>      :tabnext<CR>
-imap <C-k> <ESC>:tabnext<CR>
 
 " remap code completion to Ctrl+Space
 inoremap <Nul> <C-x><C-o>
@@ -278,6 +274,10 @@ function! SmartHome()
 endfunction
 nnoremap <silent> <Home> :call SmartHome()<CR>
 inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
+
+" map highlighting group under cursor
+map <C-S-H> :call <SID>SynStack()<CR>
+
 
 " DON'T EDIT BELOW
 
