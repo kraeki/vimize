@@ -1,2 +1,2 @@
-sudo aptitude install cmake
+sudo aptitude install cmake python-dev
 ./install.sh --clang-completer
