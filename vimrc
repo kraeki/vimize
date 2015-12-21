@@ -99,6 +99,12 @@ highlight DiffText         cterm=none ctermfg=33     ctermbg=235 gui=none guifg=
 "highlight! User4           cterm=bold ctermfg=DarkCyan  ctermbg=52               guifg=Cyan  guibg=#443333
 
 
+" cursor line highlighting
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+":nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+set cursorline! cursorcolumn!
+
 " ----------------------
 " ---- Status line  ----
 " ----------------------
