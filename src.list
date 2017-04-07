@@ -53,3 +53,6 @@ https://github.com/adimit/prolog.vim.git
 
 # keep splist after bd
 https://github.com/qpkorr/vim-bufkill.git
+
+# angular 2
+https://github.com/leafgarland/typescript-vim.git
