@@ -8,6 +8,7 @@ imap <F2>       <ESC>:CtrlPBuffer<CR>
 
 " ignore some directories and files in ctrlp plugin
 let g:ctrlp_custom_ignore = '\.git/*'
+let g:ctrlp_custom_ignore = 'debian/*'
 
 " open files in new hidden buffer in ctrlp plugin
 let g:ctrlp_open_multiple_files = 'ijr'
