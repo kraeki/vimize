@@ -287,11 +287,11 @@ map <C-S-H> :call <SID>SynStack()<CR>
 
 " DON'T EDIT BELOW
 
-" load default vimrc
-for f in split( glob('~/.vim/config/*/default.vimrc'), '\n' )
-  exe 'source' f
-endfor
-" load custom vimrc
-for f in split( glob('~/.vim/config/*/vimrc'), '\n' )
-  exe 'source' f
-endfor
+" load config modules
+runtime! config/**/*.vimrc
+
+" load all plugins
+packloadall
+
+" generate all helptag documentation
+silent! helptags ALL
