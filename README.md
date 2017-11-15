@@ -8,22 +8,33 @@ private directories.
 Installation
 ------------
 
+```
 git clone https://github.com/kraeki/vimize.git ~/.vim
 
 cd ~/.vim
 
-./vimize init
+git submodule update --init --recursive
 
-Commands list
+ln -s ~/.vim/vimrc ~/.vimrc
+```
+
+YouCompleteMe
+--------------------------------
+```
+cd pack/programming/start/YouCompleteMe
+python3 install.py --clang-completer
+```
+
+Add new plugin
 --------------------------------
 
-./vimize ls                 - list plugins with state information
+```
+# add
+git submodule add <url> pack/<catecory>/
 
-./vimize edit <plugin>      - edit vimrc of plugin
-
-./vimize install <plugin>   - install plugin
-
-./vimize remove <plugin>    - remove plugin
+# edit configuration
+config/<category>/<plugin_name>.vimrc
+```
 
 License
 -------

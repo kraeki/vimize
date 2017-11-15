@@ -1,0 +1,90 @@
+[submodule "pack/programming/start/taglist.vim"]
+	path = pack/programming/start/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "pack/programming/start/ale"]
+	path = pack/programming/start/ale
+	url = https://github.com/w0rp/ale.git
+[submodule "pack/programming/start/plantuml-syntax"]
+	path = pack/programming/start/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax
+[submodule "pack/programming/start/YouCompleteMe"]
+	path = pack/programming/start/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "pack/programming/start/ultisnips"]
+	path = pack/programming/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "pack/programming/start/vim-snippets"]
+	path = pack/programming/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "pack/programming-git/start/vim-fugitive"]
+	path = pack/programming-git/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/programming-git/start/vim-signify"]
+	path = pack/programming-git/start/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
+[submodule "pack/programming-git/start/nerdtree-git-plugin"]
+	path = pack/programming-git/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule "pack/programming-git/start/DoxygenToolkit.vim"]
+	path = pack/programming-git/start/DoxygenToolkit.vim
+	url = https://github.com/vim-scripts/DoxygenToolkit.vim.git
+[submodule "pack/programming-java/start/javacomplete"]
+	path = pack/programming-java/start/javacomplete
+	url = https://github.com/vim-scripts/javacomplete.git
+[submodule "pack/programming-html/start/breeze.vim"]
+	path = pack/programming-html/start/breeze.vim
+	url = https://github.com/gcmt/breeze.vim.git
+[submodule "pack/programming-prolog/start/prolog.vim"]
+	path = pack/programming-prolog/start/prolog.vim
+	url = https://github.com/adimit/prolog.vim.git
+[submodule "pack/programming-angular2/opt/typescript-vim"]
+	path = pack/programming-angular2/opt/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "pack/programming-angular2/opt/vim-js-pretty-template"]
+	path = pack/programming-angular2/opt/vim-js-pretty-template
+	url = https://github.com/Quramy/vim-js-pretty-template.git
+[submodule "pack/programming-angular2/opt/tsuquyomi"]
+	path = pack/programming-angular2/opt/tsuquyomi
+	url = https://github.com/Quramy/tsuquyomi.git
+[submodule "pack/programming-vue/opt/vim-vue"]
+	path = pack/programming-vue/opt/vim-vue
+	url = https://github.com/posva/vim-vue.git
+[submodule "pack/programming-ethereum/opt/vim-solidity"]
+	path = pack/programming-ethereum/opt/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
+[submodule "pack/general/start/Align"]
+	path = pack/general/start/Align
+	url = https://github.com/vim-scripts/Align.git
+[submodule "pack/general/start/ctrlp.vim"]
+	path = pack/general/start/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "pack/general/start/nerdtree"]
+	path = pack/general/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "pack/general/start/a.vim"]
+	path = pack/general/start/a.vim
+	url = https://github.com/vim-scripts/a.vim.git
+[submodule "pack/general/start/The-NERD-Commenter"]
+	path = pack/general/start/The-NERD-Commenter
+	url = https://github.com/vim-scripts/The-NERD-Commenter.git
+[submodule "pack/general/start/vim-airline"]
+	path = pack/general/start/vim-airline
+	url = https://github.com/bling/vim-airline.git
+[submodule "pack/general/start/file-line"]
+	path = pack/general/start/file-line
+	url = https://github.com/bogado/file-line.git
+[submodule "pack/general/start/vim-easymotion"]
+	path = pack/general/start/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "pack/general/start/vim-surround"]
+	path = pack/general/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/general/start/closetag.vim"]
+	path = pack/general/start/closetag.vim
+	url = https://github.com/vim-scripts/closetag.vim.git
+[submodule "pack/general/start/vim-bufkill"]
+	path = pack/general/start/vim-bufkill
+	url = https://github.com/qpkorr/vim-bufkill.git
+[submodule "pack/colorschemes/opt/vim-colors-solarized"]
+	path = pack/colorschemes/opt/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
