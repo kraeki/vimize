@@ -91,3 +91,6 @@
 [submodule "pack/general/start/ack.vim"]
 	path = pack/general/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "pack/general/start/vim-repeat"]
+	path = pack/general/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
