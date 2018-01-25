@@ -184,6 +184,17 @@ nnoremap <leader>l :set background=light<CR>
 map  <S-F2>     :nohlsearch<CR>
 imap <S-F2>     <ESC>:nohlsearch<CR>
 
+" smart search
+" places searched word in middle of the screen if
+" not already visible
+nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>
+nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>
+function s:MaybeMiddle()
+  if winline() == 1 || winline() == winheight(0)
+    normal! zz
+  endif
+endfunction
+
 " toggle numbering
 map  <F8>      :set number! relativenumber!<CR>
 imap  <F8>     :set number! relativenumber!<CR>
