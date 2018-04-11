@@ -94,3 +94,6 @@
 [submodule "pack/general/start/vim-repeat"]
 	path = pack/general/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "pack/programming/ricofile.vim"]
+	path = pack/programming/start/ricofile.vim
+	url = https://schmia47@stash.intranet.roche.com/stash/scm/skynet/ricofile.vim.git
