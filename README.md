@@ -30,7 +30,7 @@ Add new plugin
 
 ```
 # add
-git submodule add <url> pack/<catecory>/
+git submodule add <url> pack/<catecory>/start/<plugin_name>
 
 # edit configuration
 config/<category>/<plugin_name>.vimrc
